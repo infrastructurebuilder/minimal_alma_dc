@@ -1,3 +1,5 @@
+# minimal_alma_dc
+
 # rhel8tools
 
 This is a base for a reasonably small devcontainer image to use to configure RHEL.
@@ -14,4 +16,3 @@ Use this:
 ```
 
 That should allow you to run ansible playbooks against a RHEL 8 system. Latest packer (already installed here) works fine.
-# minimal_alma_dc
