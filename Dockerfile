@@ -14,6 +14,8 @@ RUN <<MKDIRSENVVARS
   echo "alias ll='ls -al'" >> ${HOME}/.bashrc
   echo "alias python=python3" >> ${HOME}/.bashrc
   echo "alias pip=pip3" >> ${HOME}/.bashrc
+  echo 'export GPG_TTY=$(tty)' >> ${HOME}/.bashrc
+  echo "export EDITOR=vim" >> ${HOME}/.bashrc
   
   microdnf -y install dnf
   dnf -y update dnf
@@ -30,7 +32,7 @@ RUN <<DNF
   dnf -y update
   mkdir -p /etc/sudoers.d/
   echo '%wheel ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/wheel
-  dnf -y install dos2unix vim-minimal vim-enhanced
+  dnf -y install dos2unix vim-minimal vim-enhanced gpg
 DNF
 
 RUN <<PIPXUV
