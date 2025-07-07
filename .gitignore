@@ -1,0 +1,5 @@
+.*
+.envrc
+!.gitignore
+!.github
+!.devcontainer/devcontainer.json
