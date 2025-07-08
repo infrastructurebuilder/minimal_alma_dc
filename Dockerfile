@@ -3,7 +3,7 @@ FROM almalinux:10-minimal
 ENV HOME="/root"
 
 RUN <<MKDIRSENVVARS
-  mkdir -p ${HOME}/.config
+  mkdir -p ${HOME}/.config/direnv
   mkdir -p ${HOME}/.aws
   mkdir -p ${HOME}/.local/bin
   mkdir -p ${HOME}/.gnupg
@@ -61,6 +61,7 @@ EOF
 #   echo 'eval "$(uv generate-shell-completion bash)"' >> ~/.bashrc
 # POETRY
 
+COPY direnv.toml ${HOME}/.config/direnv/direnv.toml
 COPY tool-versions ${HOME}/.tool-versions
 COPY awsconfig ${HOME}/.aws/config
 COPY Dockerfile ${HOME}/Dockerfile.almabase
@@ -73,7 +74,8 @@ RUN dos2unix \
   ${HOME}/.tool-versions \
   ${HOME}/.gnupg/AWS.pub \
   ${HOME}/Dockerfile.almabase \
-  ${HOME}/.config/starship.toml
+  ${HOME}/.config/starship.toml \
+  ${HOME}/.config/direnv/direnv.toml
 
 RUN <<ASDF
     git clone https://github.com/asdf-vm/asdf.git ${HOME}/.asdf --branch v0.14.0

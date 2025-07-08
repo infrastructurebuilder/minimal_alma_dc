@@ -1,0 +1,4 @@
+# Direnv config for dev container
+[whitelist]
+prefix = [   "/workspaces" ]
+exact = [ "/root/.envrc" ]
