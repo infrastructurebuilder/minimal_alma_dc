@@ -26,7 +26,7 @@ RUN <<DNF
   # dnf -y config-manager --set-enabled crb
   dnf -y install epel-release
   echo "-------------------------------------------"
-  dnf -y --allowerasing install sudo tar bash-completion findutils grep gzip tar xz which curl git unzip
+  dnf -y --allowerasing install sudo tar bash-completion findutils grep gzip tar xz which curl git unzip procps-ng
 DNF
 RUN <<DNF  
   dnf -y update
