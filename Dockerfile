@@ -32,7 +32,7 @@ RUN <<DNF
   dnf -y update
   mkdir -p /etc/sudoers.d/
   echo '%wheel ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/wheel
-  dnf -y install dos2unix vim-minimal vim-enhanced gpg
+  dnf -y install dos2unix vim-minimal vim-enhanced gpg which
 DNF
 
 RUN <<PIPXUV
