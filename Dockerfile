@@ -100,4 +100,9 @@ ASDF
 
 COPY README.md ${HOME}/README.md
 
+RUN <<SOMEOTHER
+  . ${HOME}/.bashrc
+    uv tool install bdtemplater==0.1.0
+SOMEOTHER
+
 # pipx install --include-deps ansible==9.* to work with RHEL8
