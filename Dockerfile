@@ -149,7 +149,7 @@ ASDFINSTALLS
 
 RUN <<SOMEOTHER
   . ${HOME}/.bashrc
-    uv tool install bdtemplater==0.2.0
+    uv tool install bdtemplater
 SOMEOTHER
 
 # pipx install --include-deps ansible==9.* to work with RHEL8
