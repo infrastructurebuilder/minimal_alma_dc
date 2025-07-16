@@ -16,3 +16,5 @@ Use this:
 ```
 
 That should allow you to run ansible playbooks against a RHEL 8 system. Latest packer (already installed here) works fine.
+
+https://github.com/infrastructurebuilder/minimal_alma_dc
