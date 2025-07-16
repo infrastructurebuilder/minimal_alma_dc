@@ -138,7 +138,6 @@ RUN <<ASDFINSTALLS
       fi
       echo "Installing $tool version $tool_version"
       asdf install "$tool" "$tool_version" || true
-      asdf local "$tool" "$tool_version" || true
       asdf set -u "$tool" "$tool_version" || true
       done
     fi
