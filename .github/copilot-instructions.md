@@ -1,0 +1,1 @@
+Format all Dockerfile instructions to be consistent with the project's style guide. Ensure that all RUN commands are formatted correctly and that any comments are clear and concise.

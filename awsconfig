@@ -1,1 +1,1 @@
-# For aws-vault
+# Copied to ~/.aws/config.  Overridden by volume mounts in devcontainer

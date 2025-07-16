@@ -1,0 +1,11 @@
+# This file is used to define the tools and plugins for asdf in the Dockerfile
+# Update these as you see fit?
+plugins:
+  awscli: ""
+  packer: https://github.com/asdf-community/asdf-hashicorp.git
+  opentofu: ""
+tools:
+# aws-vault: 7.2.0
+  awscli : latest
+  packer : 1.13.1
+  opentofu : 1.10.2
