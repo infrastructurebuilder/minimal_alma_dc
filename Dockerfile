@@ -41,10 +41,11 @@ RUN <<DNF2
 DNF2
 
 RUN <<PIPXUV
-  python3 -m ensurepip --upgrade && python3 -m pip install --user pipx
-  . ${HOME}/.bashrc
-  curl -LsSf https://astral.sh/uv/install.sh | sh -s -- 
-  echo 'eval "$(uv generate-shell-completion bash)"' >> ~/.bashrc
+  python3 -m ensurepip --upgrade
+  # python3 -m ensurepip --upgrade && python3 -m pip install --user pipx
+  # . ${HOME}/.bashrc
+  # curl -LsSf https://astral.sh/uv/install.sh | sh -s -- 
+  # echo 'eval "$(uv generate-shell-completion bash)"' >> ~/.bashrc
 PIPXUV
 
 RUN <<EOF
@@ -52,11 +53,11 @@ RUN <<EOF
   dnf -y install python3-devel gcc-c++ make
   gpg --version
   echo "eval \"\$(direnv hook bash)\"" >> ${HOME}/.bashrc
-  curl https://sh.rustup.rs -sSf | sh -s -- -y
-  . "${HOME}/.cargo/env"
-  cargo install petname
-  curl -sS https://starship.rs/install.sh | sh -s -- --yes
-  echo 'eval "$(starship init bash)"' >> ${HOME}/.bashrc
+  # curl https://sh.rustup.rs -sSf | sh -s -- -y
+  # . "${HOME}/.cargo/env"
+  # cargo install petname
+  # curl -sS https://starship.rs/install.sh | sh -s -- --yes
+  # echo 'eval "$(starship init bash)"' >> ${HOME}/.bashrc
 EOF
 # RUN <<POETRY  
 #   python3 -m ensurepip --upgrade && python3 -m pip install --user pipx
@@ -99,6 +100,7 @@ RUN <<ASDF
     echo ". <(asdf completion bash)" >> ${HOME}/.bashrc
 ASDF
 RUN <<ASDFINSTALLS
+
     . ${HOME}/.bashrc
     ASDF_TOOLS_CONFIG=${HOME}/.tool-versions.yaml
     # Install plugins from ${ASDF_TOOLS_CONFIG} if it exists
@@ -147,7 +149,15 @@ RUN <<ASDFINSTALLS
     # export AWS_VAULT_FILE_PASSPHRASE=somepassword needs to be set
 ASDFINSTALLS
 
+RUN <<GITFLOW
+export PREFIX=${HOME}/.local
+wget -q  https://raw.githubusercontent.com/CJ-Systems/gitflow-cjs/develop/contrib/gitflow-installer.sh 
+sudo bash gitflow-installer.sh install stable
+sudo rm -f gitflow-installer.sh
+GITFLOW
 RUN <<SOMEOTHER
+  echo 'eval "$(uv generate-shell-completion bash)"' >> ~/.bashrc
+  echo 'eval "$(starship init bash)"' >> ${HOME}/.bashrc
   . ${HOME}/.bashrc
     uv tool install bdtemplater
 SOMEOTHER

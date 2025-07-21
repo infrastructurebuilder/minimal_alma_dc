@@ -4,8 +4,15 @@ plugins:
   awscli: ""
   packer: https://github.com/asdf-community/asdf-hashicorp.git
   opentofu: ""
+  starship: ""
+  uv: ""
+  pipx: ""
 tools:
-# aws-vault: 7.2.0
-  awscli : latest
-  packer : 1.13.1
-  opentofu : 1.10.2
+# Versions in comments are considered "good"
+# aws-vault: latest #7.2.0
+  awscli : latest   # 2.27.56
+  packer : latest   # 1.13.1
+  opentofu : latest # 1.10.3
+  starship : latest # 1.23.0
+  uv : latest       # 0.8.0
+  pipx : latest     # 1.7.1
