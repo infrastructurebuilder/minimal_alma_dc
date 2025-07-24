@@ -160,6 +160,8 @@ RUN <<SOMEOTHER
   echo 'eval "$(starship init bash)"' >> ${HOME}/.bashrc
   . ${HOME}/.bashrc
     uv tool install bdtemplater
+    uv tool install bump-my-version
+    uv tool install git-standup
 SOMEOTHER
 
 # pipx install --include-deps ansible==9.* to work with RHEL8
