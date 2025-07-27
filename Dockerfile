@@ -90,6 +90,14 @@ RUN dos2unix \
   ${HOME}/.config/direnv/direnv.toml \
   ${HOME}/.tool-versions.yaml
 
+RUN <<GITFLOW
+  . ${HOME}/.bashrc
+  export PREFIX=${HOME}/.local
+  wget -q  https://raw.githubusercontent.com/CJ-Systems/gitflow-cjs/develop/contrib/gitflow-installer.sh 
+  sudo bash gitflow-installer.sh install stable
+  sudo rm -f gitflow-installer.sh
+GITFLOW
+
 RUN <<ASDF
     . ${HOME}/.bashrc
     export ASDF_VERSION="v0.18.0"
@@ -149,19 +157,13 @@ RUN <<ASDFINSTALLS
     # export AWS_VAULT_FILE_PASSPHRASE=somepassword needs to be set
 ASDFINSTALLS
 
-RUN <<GITFLOW
-export PREFIX=${HOME}/.local
-wget -q  https://raw.githubusercontent.com/CJ-Systems/gitflow-cjs/develop/contrib/gitflow-installer.sh 
-sudo bash gitflow-installer.sh install stable
-sudo rm -f gitflow-installer.sh
-GITFLOW
 RUN <<SOMEOTHER
-  echo 'eval "$(uv generate-shell-completion bash)"' >> ~/.bashrc
-  echo 'eval "$(starship init bash)"' >> ${HOME}/.bashrc
-  . ${HOME}/.bashrc
-    uv tool install bdtemplater
-    uv tool install bump-my-version
-    uv tool install git-standup
+echo 'eval "$(uv generate-shell-completion bash)"' >> ~/.bashrc
+echo 'eval "$(starship init bash)"' >> ${HOME}/.bashrc
+. ${HOME}/.bashrc
+uv tool install bdtemplater
+uv tool install bump-my-version
 SOMEOTHER
 
 # pipx install --include-deps ansible==9.* to work with RHEL8
+
