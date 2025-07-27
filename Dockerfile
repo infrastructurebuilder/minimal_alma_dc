@@ -91,11 +91,12 @@ RUN dos2unix \
   ${HOME}/.tool-versions.yaml
 
 RUN <<GITFLOW
+  cd ${HOME}
   . ${HOME}/.bashrc
   export PREFIX=${HOME}/.local
   wget -q  https://raw.githubusercontent.com/CJ-Systems/gitflow-cjs/develop/contrib/gitflow-installer.sh 
-  sudo bash gitflow-installer.sh install stable
-  sudo rm -f gitflow-installer.sh
+  bash gitflow-installer.sh install stable
+  rm -f gitflow-installer.sh
 GITFLOW
 
 RUN <<ASDF
