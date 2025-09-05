@@ -15,6 +15,6 @@ tools:
   packer : latest     # 1.13.1
   opentofu : latest   # 1.10.3
   starship : latest   # 1.23.0
-  uv : latest         # 0.8.0
+  uv : latest         # 0.8.x?
   pipx : latest       # 1.7.1
   git-standup: latest #
