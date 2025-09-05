@@ -35,7 +35,7 @@ RUN <<DNF2
   dnf -y update
   mkdir -p /etc/sudoers.d/
   echo '%wheel ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/wheel
-  dnf -y install dos2unix vim-minimal vim-enhanced gpg which wget jq
+  dnf -y install dos2unix vim-minimal vim-enhanced gpg which wget jq zip unzip gnupg2 
   wget https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_linux_${THISARCH} -O ${HOME}/.local/bin/yq && \
   chmod +x ${HOME}/.local/bin/yq
 DNF2
@@ -89,6 +89,25 @@ RUN dos2unix \
   ${HOME}/.asdfrc \
   ${HOME}/.config/direnv/direnv.toml \
   ${HOME}/.tool-versions.yaml
+
+RUN <<SDKMAN
+  curl -s "https://get.sdkman.io?ci=true" | bash
+  echo "
+  sdkman_auto_answer=true
+  sdkman_auto_complete=true
+  sdkman_auto_env=true # See https://sdkman.io/usage/#env-command ( .sdkmanrc files)
+  sdkman_auto_update=true
+  sdkman_beta_channel=false
+  sdkman_checksum_enable=true
+  sdkman_colour_enable=true
+  sdkman_curl_connect_timeout=7
+  sdkman_curl_max_time=10
+  sdkman_debug_mode=false
+  sdkman_insecure_ssl=false
+  sdkman_rosetta2_compatible=false
+  sdkman_selfupdate_feature=true
+  " >> ${HOME}/.sdkman/etc/config
+SDKMAN
 
 RUN <<GITFLOW
   cd ${HOME}
@@ -165,6 +184,7 @@ echo 'eval "$(starship init bash)"' >> ${HOME}/.bashrc
 uv tool install bdtemplater
 uv tool install bump-my-version
 SOMEOTHER
+
 
 # pipx install --include-deps ansible==9.* to work with RHEL8
 
