@@ -1,4 +1,4 @@
-FROM almalinux:10-minimal
+FROM almalinux:10-minimal AS minimal_alma_dc
 
 ENV HOME="/root"
 
@@ -38,15 +38,15 @@ RUN <<DNF2
   dnf -y install dos2unix vim-minimal vim-enhanced gpg which wget jq zip unzip gnupg2 
   wget https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_linux_${THISARCH} -O ${HOME}/.local/bin/yq && \
   chmod +x ${HOME}/.local/bin/yq
+  python3 -m ensurepip --upgrade
 DNF2
 
-RUN <<PIPXUV
-  python3 -m ensurepip --upgrade
-  # python3 -m ensurepip --upgrade && python3 -m pip install --user pipx
-  # . ${HOME}/.bashrc
-  # curl -LsSf https://astral.sh/uv/install.sh | sh -s -- 
-  # echo 'eval "$(uv generate-shell-completion bash)"' >> ~/.bashrc
-PIPXUV
+# RUN <<PIPXUV
+#   # python3 -m ensurepip --upgrade && python3 -m pip install --user pipx
+#   # . ${HOME}/.bashrc
+#   # curl -LsSf https://astral.sh/uv/install.sh | sh -s -- 
+#   # echo 'eval "$(uv generate-shell-completion bash)"' >> ~/.bashrc
+# PIPXUV
 
 RUN <<EOF
   curl -sfL https://direnv.net/install.sh | bash
@@ -186,5 +186,10 @@ uv tool install bump-my-version
 SOMEOTHER
 
 
-# pipx install --include-deps ansible==9.* to work with RHEL8
-
+# # pipx install --include-deps ansible==9.* to work with RHEL8
+# FROM minimal_alma_dc AS minimal_alma_dc_ansible_9
+# RUN <<SCRIPT1
+#   mkdir ${HOME}/.gnupg
+#   . ${HOME}/.bashrc
+#     uv tool install --with-executables-from ansible-core,ansible-lint ansible==9.*
+# SCRIPT1
