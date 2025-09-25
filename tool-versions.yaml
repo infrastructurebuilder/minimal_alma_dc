@@ -7,6 +7,7 @@ plugins:
   starship: ""
   uv: ""
   pipx: ""
+  noseyparker:  https://github.com/infrastructurebuilder/asdf-plugin-noseyparker.git
 tools:
 # Move these ASDF-installed tools to pinned versions if you want.  
 # The image build will install the version specified here and setup .tool-versions
@@ -18,3 +19,4 @@ tools:
   uv : latest         # 0.8.x?
   pipx : latest       # 1.7.1
   git-standup: latest #
+  noseyparker: latest # 0.24.0
